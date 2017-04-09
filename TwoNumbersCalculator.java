@@ -14,6 +14,9 @@ import javax.swing.JTextField;
 public class TwoNumbersCalculator extends BaseFrame {
 
 	private JLabel desLabel;
+	private JLabel desLabel1;
+	private JLabel desLabel2;
+	private JLabel desLabel3;
 	private JButton calculateButton;
 	private JTextField numberTextField1;
 	private JTextField numberTextField2;
@@ -27,7 +30,10 @@ public class TwoNumbersCalculator extends BaseFrame {
 	@Override
 	public void createComponents() {
 
-		desLabel = new JLabel("Please input two numbers then click a calculate button", JLabel.RIGHT);
+		desLabel = new JLabel("Please input two numbers then click a calculate button", JLabel.CENTER);
+		desLabel1 = new JLabel("Please input the first number", JLabel.CENTER);
+		desLabel2 = new JLabel("Please input the second number", JLabel.CENTER);
+		desLabel3 = new JLabel("The result will show here", JLabel.CENTER);
 		calculateButton = new JButton("CALCULATE");
 		numberTextField1 = new JTextField(30);
 		numberTextField2 = new JTextField(30);
@@ -47,14 +53,17 @@ public class TwoNumbersCalculator extends BaseFrame {
 	public void addComponents() {
 		Container con = getContentPane();
 		con.add(desLabel);
+		con.add(desLabel1);
 		con.add(numberTextField1);
-		con.add(numberTextField2);
-		con.add(numberTextField3);
+		con.add(desLabel2);
+		con.add(numberTextField2);	
 		con.add(addButton);
 		con.add(minusButton);
 		con.add(multipleButton);
 		con.add(divideButton);
 		con.add(calculateButton);
+		con.add(desLabel3);
+		con.add(numberTextField3);
 	}
 
 	@Override
