@@ -14,13 +14,13 @@ import javax.swing.JTextField;
 public class TwoNumbersCalculator extends BaseFrame {
 
 	private JLabel desLabel;
-	private JLabel desLabel1;
-	private JLabel desLabel2;
-	private JLabel desLabel3;
+	private JLabel num1Label;
+	private JLabel num2Label;
+	private JLabel resLabel;
 	private JButton calculateButton;
 	private JTextField numberTextField1;
 	private JTextField numberTextField2;
-	private JTextField numberTextField3;
+	private JTextField numberTextFieldRes;
 	private ButtonGroup buttonGroup;
 	private JRadioButton addButton;
 	private JRadioButton minusButton;
@@ -30,14 +30,14 @@ public class TwoNumbersCalculator extends BaseFrame {
 	@Override
 	public void createComponents() {
 
-		desLabel = new JLabel("Please input two numbers then click a calculate button", JLabel.CENTER);
-		desLabel1 = new JLabel("Please input the first number", JLabel.CENTER);
-		desLabel2 = new JLabel("Please input the second number", JLabel.CENTER);
-		desLabel3 = new JLabel("The result will show here", JLabel.CENTER);
+		desLabel = new JLabel("Please input two numbers then click the calculate button", JLabel.CENTER);
+		num1Label = new JLabel("Please input the first number", JLabel.CENTER);
+		num2Label = new JLabel("Please input the second number", JLabel.CENTER);
+		resLabel = new JLabel("The result will show here", JLabel.CENTER);
 		calculateButton = new JButton("CALCULATE");
 		numberTextField1 = new JTextField(30);
 		numberTextField2 = new JTextField(30);
-		numberTextField3 = new JTextField(30);
+		numberTextFieldRes = new JTextField(30);
 		addButton = new JRadioButton("+");
 		minusButton = new JRadioButton("-");
 		multipleButton = new JRadioButton("*");
@@ -53,17 +53,17 @@ public class TwoNumbersCalculator extends BaseFrame {
 	public void addComponents() {
 		Container con = getContentPane();
 		con.add(desLabel);
-		con.add(desLabel1);
+		con.add(num1Label);
 		con.add(numberTextField1);
-		con.add(desLabel2);
-		con.add(numberTextField2);	
+		con.add(num2Label);
+		con.add(numberTextField2);
 		con.add(addButton);
 		con.add(minusButton);
 		con.add(multipleButton);
 		con.add(divideButton);
 		con.add(calculateButton);
-		con.add(desLabel3);
-		con.add(numberTextField3);
+		con.add(resLabel);
+		con.add(numberTextFieldRes);
 	}
 
 	@Override
@@ -76,43 +76,46 @@ public class TwoNumbersCalculator extends BaseFrame {
 	class CalculateBehavior implements ActionListener {
 		public void calculate(JTextField numberTextField3) {
 
-			int a;
+			double num1;
 			if (numberTextField1.getText().length() == 0)
-				a = 0;
+				num1 = 0;
 			else {
-				a = Integer.parseInt(numberTextField1.getText());
+				num1 = Double.parseDouble(numberTextField1.getText());
 			}
 
-			int b;
+			double num2;
 			if (numberTextField2.getText().length() == 0)
-				b = 0;
+				num2 = 0;
 			else {
-				b = Integer.parseInt(numberTextField2.getText());
+				num2 = Double.parseDouble(numberTextField2.getText());
 			}
+
+			double res = 0.0;
+			String resString = "";
 
 			if (addButton.isSelected()) {
-				int c = a + b;
-				String c2 = Integer.toString(c);
-				numberTextField3.setText(c2);
+				res = num1 + num2;
 			} else if (minusButton.isSelected()) {
-				int c = a - b;
-				String c2 = Integer.toString(c);
-				numberTextField3.setText(c2);
+				res = num1 - num2;
 			} else if (multipleButton.isSelected()) {
-				int c = a * b;
-				String c2 = Integer.toString(c);
-				numberTextField3.setText(c2);
+				res = num1 * num2;
 			} else if (divideButton.isSelected()) {
-				int c = a / b;
-				String c2 = Integer.toString(c);
-				numberTextField3.setText(c2);
+				res = num1 / num2;
 			}
 
+			if (res == (int) res) {
+				int resInt = (int) res;
+				resString = Integer.toString(resInt);
+			} else {
+				resString = Double.toString(res);			
+			}
+			numberTextFieldRes.setText(resString);
 		}
+		
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			calculate(numberTextField3);
+			calculate(numberTextFieldRes);
 
 		}
 
