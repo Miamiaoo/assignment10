@@ -32,7 +32,9 @@ A class to count the number of characters, words, and lines in files.
 	private int characterCount;
 
 	public FileCounter() {
-	
+		 wordCount = 0;
+	     lineCount = 0;
+	     characterCount = 0;
 	}
 	
 /**
@@ -51,6 +53,11 @@ public void read (Scanner in) {
 	
 	in.nextLine();
 	lineCount++;	
+	
+	while (in.hasNextByte()) {
+		in.nextByte();
+		characterCount++;
+	}
 }
 
 /**
